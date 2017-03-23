@@ -11,6 +11,7 @@ indent() {
 echo "-----> Force project"
 
 cd $BUILD_DIR
+export HOME=$BUILD_DIR
 
 echo "-----> Installing CLI..."
 curl -s https://developer.salesforce.com/media/salesforce-cli/sfdx-v5.6.22-f9533ba-linux-amd64.tar.xz | tar xJf -
