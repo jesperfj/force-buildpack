@@ -1,0 +1,22 @@
+#!/bin/sh
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+echo "-----> Force project"
+
+cd $BUILD_DIR
+
+echo -n "-----> Installing CLI..."
+curl -s https://developer.salesforce.com/media/salesforce-cli/sfdx-v5.6.22-f9533ba-linux-amd64.tar.xz tar xJf -
+mkdir -p .local/share
+mv heroku .local/share/heroku
+
+mkdir .profile.d
+echo 'PATH=$PATH:$HOME/.local/share/heroku/bin' > .profile.d/force-defaults.sh
+echo "done"

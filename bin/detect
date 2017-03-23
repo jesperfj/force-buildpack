@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "Force Buildpack (jesper@heroku.com)"
+exit 0
