@@ -13,7 +13,7 @@ echo "-----> Force project"
 cd $BUILD_DIR
 
 echo -n "-----> Installing CLI..."
-curl -s https://developer.salesforce.com/media/salesforce-cli/sfdx-v5.6.22-f9533ba-linux-amd64.tar.xz tar xJf -
+curl -s https://developer.salesforce.com/media/salesforce-cli/sfdx-v5.6.22-f9533ba-linux-amd64.tar.xz | tar xJf -
 mkdir -p .local/share
 mv heroku .local/share/heroku
 
