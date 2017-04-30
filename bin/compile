@@ -17,8 +17,9 @@ echo "-----> Installing CLI..."
 curl -s https://developer.salesforce.com/media/salesforce-cli/sfdx-v5.6.22-f9533ba-linux-amd64.tar.xz | tar xJf -
 mkdir -p .local/share
 mv heroku .local/share/heroku
+export PATH=$PATH:$HOME/.local/share/heroku/bin
 echo "-----> Installing Force Plugin..."
-.local/share/heroku/bin/sfdx plugins:install salesforce-alm
+sfdx plugins:install salesforce-alm
 
 mkdir .profile.d
 echo 'PATH=$PATH:$HOME/.local/share/heroku/bin' > .profile.d/force-defaults.sh
