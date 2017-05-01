@@ -23,4 +23,5 @@ sfdx plugins:install salesforce-alm
 
 mkdir .profile.d
 echo 'PATH=$PATH:$HOME/.local/share/heroku/bin' > .profile.d/force-defaults.sh
-echo "done"
+echo 'SFDX_DISABLE_ENCRYPTION=true' >> .profile.d/force-defaults.sh
+echo 'curl -s $FORCE_DEVHUB_AUTH_URL | tar -C $HOME/.sfdx x -' >> .profile.d/force-defaults.sh
