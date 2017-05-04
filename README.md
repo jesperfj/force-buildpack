@@ -11,3 +11,13 @@ curl -s https://developer.salesforce.com/media/salesforce-cli/manifest.json | jq
 ```
 
 (assuming you have [jq](https://stedolan.github.io/jq/) installed.)
+
+
+## S3 public read
+
+Enable public read on S3 bucket:
+
+    BUCKET_NAME=$(heroku config:get BYODEMO_BUCKET_NAME)
+    sed -e s/%%BUCKET_NAME%%/$BUCKET_NAME/ s3/public-read.json > tmp
+    aws --profile dev s3api put-bucket-policy --bucket $BUCKET_NAME --policy file://tmp
+    rm tmp

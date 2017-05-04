@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "-----> Installing CLI..."
+curl -s https://developer.salesforce.com/media/salesforce-cli/sfdx-v5.6.22-f9533ba-linux-amd64.tar.xz | tar xJf -
+mkdir -p .local/share
+mv heroku .local/share/heroku
+export PATH=$PATH:$HOME/.local/share/heroku/bin
+echo "-----> Installing Force Plugin..."
+sfdx plugins:install salesforce-alm
