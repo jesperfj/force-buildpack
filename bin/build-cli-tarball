@@ -8,5 +8,5 @@ export PATH=$PATH:$HOME/.local/share/heroku/bin
 echo "-----> Installing Force Plugin..."
 sfdx plugins:install salesforce-alm
 
-tar zcvf sfdx.tgz .config .local/share/herkou .sfdx
+tar zcvf sfdx.tgz .config .local/share/heroku .sfdx
 
