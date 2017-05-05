@@ -8,21 +8,5 @@ export PATH=$PATH:$HOME/.local/share/heroku/bin
 echo "-----> Installing Force Plugin..."
 sfdx plugins:install salesforce-alm
 
-tar zcvf sfdx.tgz .config .local .sfdx
+tar zcvf sfdx.tgz .config .local/share/herkou .sfdx
 
-# All this came from http://tmont.com/blargh/2014/1/uploading-to-s3-in-bash
-file=sfdx.tgz
-bucket=$BYODEMO_BUCKET_NAME
-resource="/${bucket}/${file}"
-contentType="application/x-compressed-tar"
-dateValue=`date -R`
-stringToSign="PUT\n\n${contentType}\n${dateValue}\n${resource}"
-s3Key=$BYODEMO_AWS_ACCESS_KEY_ID
-s3Secret=$BYODEMO_AWS_SECRET_ACCESS_KEY
-signature=`echo -en ${stringToSign} | openssl sha1 -hmac ${s3Secret} -binary | base64`
-curl -X PUT -T "${file}" \
-  -H "Host: ${bucket}.s3.amazonaws.com" \
-  -H "Date: ${dateValue}" \
-  -H "Content-Type: ${contentType}" \
-  -H "Authorization: AWS ${s3Key}:${signature}" \
-  https://${bucket}.s3.amazonaws.com/${file}
