@@ -19,4 +19,4 @@ curl -s https://s3.amazonaws.com/bucket-utDIzwgeHiZvZF3zr4RbWQ/sfdx.tgz | tar zx
 mkdir .profile.d
 echo 'PATH=$PATH:$HOME/.local/share/heroku/bin' > .profile.d/force-defaults.sh
 echo 'export SFDX_DISABLE_ENCRYPTION=true' >> .profile.d/force-defaults.sh
-echo 'curl -s $FORCE_DEVHUB_AUTH_URL | tar -C $HOME/.sfdx -xf -' >> .profile.d/force-defaults.sh
+echo 'curl -s -H "Accept: application/vnd.sfdx-config" $FORCE_DEVHUB_AUTH_URL | tar -C $HOME/.sfdx -xf -' >> .profile.d/force-defaults.sh
