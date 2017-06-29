@@ -1,12 +1,17 @@
 #!/bin/bash
 
 echo "-----> Installing CLI..."
-curl -s https://developer.salesforce.com/media/salesforce-cli/sfdx-v5.7.6-d42cf65-linux-amd64.tar.xz | tar xJf -
-mkdir -p .local/share
-mv heroku .local/share/heroku
-export PATH=$PATH:$HOME/.local/share/heroku/bin
+curl -s https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz | tar xJf -
+mkdir -p ~/.local/share/sfdx
+mv sfdx .local/share/sfdx/cli
+
+export PATH=$PATH:$HOME/.local/share/sfdx/cli/bin
 echo "-----> Installing Force Plugin..."
 sfdx plugins:install salesforce-alm
 
-tar zcf sfdx-v5.7.4-57b4969.tgz .config .local/share/heroku .sfdx
+export AWS_SECRET_ACCESS_KEY=$BYODEMO_AWS_SECRET_ACCESS_KEY
+export AWS_ACCESS_KEY_ID=$BYODEMO_AWS_ACCESS_KEY_ID
 
+tar zcf sfdx.tgz .config .local/share/heroku .sfdx
+
+aws s3 cp sfdx.tgz s3://$BYODEMO_BUCKET_NAME
