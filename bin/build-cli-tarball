@@ -12,6 +12,6 @@ sfdx plugins:install salesforce-alm
 export AWS_SECRET_ACCESS_KEY=$BYODEMO_AWS_SECRET_ACCESS_KEY
 export AWS_ACCESS_KEY_ID=$BYODEMO_AWS_ACCESS_KEY_ID
 
-tar zcf sfdx.tgz .config .local/share/heroku .sfdx
+tar zcf sfdx.tgz .config .local/share/sfdx .sfdx
 
 aws s3 cp sfdx.tgz s3://$BYODEMO_BUCKET_NAME
