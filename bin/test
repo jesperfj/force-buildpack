@@ -1,11 +1,12 @@
 #!/bin/bash
 
 cd $1
-echo "# Running in $(pwd)"
 
 if [[ -e config/test-org-def.json ]]; then
+   echo "# Using scratch org definition in config/test-org-def.json"
    createopt="-f config/test-org-def.json"
 else
+   echo "# config/test-org-def.json not found. Using edition=Developer as scratch org definition"
    createopt="edition=Developer"
 fi
 
