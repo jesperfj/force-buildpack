@@ -16,7 +16,7 @@ export HOME=$BUILD_DIR
 echo "-----> Installing CLI..."
 curl -s https://s3.amazonaws.com/bucket-NTbv9HdSE8QidqjXBWdqQw/sfdx.tgz | tar zxf -
 
-mkdir .profile.d
+mkdir -p .profile.d
 echo 'PATH=$PATH:$HOME/.local/share/sfdx/cli/bin' > .profile.d/force-defaults.sh
 echo 'export SFDX_DISABLE_ENCRYPTION=true' >> .profile.d/force-defaults.sh
 echo 'curl -s -H "Accept: application/vnd.sfdx-config" $FORCE_DEVHUB_AUTH_URL | tar -C $HOME/.sfdx -xf -' >> .profile.d/force-defaults.sh
