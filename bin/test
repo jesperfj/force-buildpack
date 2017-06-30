@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [[ -e config/test-org-def.json ]]; then
+   createopt="-f config/test-org-def.json"
+else
+   createopt="edition=Developer"
+fi
+
+echo "# Creating scratch org..."
+orguser=$(sfdx force:org:create $createopt --json | ruby -e "require 'json'; puts JSON.parse(ARGF.read)['result']['username']")
+
+function finish {
+    sfdx force:org:delete -p -u $orguser | sed 's/^/# /'
+}
+trap finish EXIT
+
+echo "# Pushing code to org..."
+sfdx force:source:push -u $orguser | sed 's/^/# /'
+
+echo "# Running tests..."
+sfdx force:apex:test:run --resultformat tap -u $orguser
