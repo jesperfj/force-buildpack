@@ -1,5 +1,8 @@
 #!/bin/bash
 
+cd $1
+echo "# Running in $(pwd)"
+
 if [[ -e config/test-org-def.json ]]; then
    createopt="-f config/test-org-def.json"
 else
