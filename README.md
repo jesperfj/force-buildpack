@@ -15,9 +15,14 @@ curl -s https://developer.salesforce.com/media/salesforce-cli/manifest.json | jq
 
 ## S3 public read
 
-Enable public read on S3 bucket:
+The S3 bucket provisioned by byodemo isn't publicly readable. You'll need to find some way of changing that.
+`s3/public-read.json` contains a policy snippet for turning on public read but you'll need to append it to 
+the existing policy for the s3 bucket somehow. Here's how to sub out the bucket name:
 
     BUCKET_NAME=$(heroku config:get BYODEMO_BUCKET_NAME)
     sed -e s/%%BUCKET_NAME%%/$BUCKET_NAME/ s3/public-read.json > tmp
-    aws --profile dev s3api put-bucket-policy --bucket $BUCKET_NAME --policy file://tmp
-    rm tmp
+
+You'll then need to combine the policy in the tmp file with current policy and set the end result with:
+
+    aws s3api put-bucket-policy --bucket $BUCKET_NAME --policy file://merged_policy
+    rm tmp merged_policy
