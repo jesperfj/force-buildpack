@@ -11,6 +11,8 @@ else
 fi
 
 echo "# Creating scratch org..."
+# Ruby is used instead of jq here because it's available on the base image and saves having
+# to add another dependency.
 orguser=$(sfdx force:org:create $createopt --json | ruby -e "require 'json'; puts JSON.parse(ARGF.read)['result']['username']")
 
 function finish {
