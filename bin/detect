@@ -1,4 +1,4 @@
 #!/bin/sh
 
-echo "Force Buildpack (jesper@heroku.com)"
+echo "github.com/jesperfj/force-buildpack"
 exit 0
