@@ -14,7 +14,7 @@ cd $BUILD_DIR
 export HOME=$BUILD_DIR
 
 echo "-----> Installing CLI..."
-curl -s https://s3.amazonaws.com/bucket-00-v4hdJWnrwf89HpWdp7A/sfdx.tgz | tar zxf -
+curl -s https://s3.amazonaws.com/bucket-qn3mPNzPde_DH_IlJMfm2g/sfdx.tgz | tar zxf -
 
 mkdir -p .profile.d
 echo 'PATH=$PATH:$HOME/.local/share/sfdx/cli/bin' > .profile.d/force-defaults.sh
